@@ -140,7 +140,7 @@ _jinit_c_main_controller(j_compress_ptr cinfo, boolean need_full_buffer)
   jpeg_component_info *compptr;
   int data_unit = cinfo->master->lossless ? 1 : DCTSIZE;
 
-  if (cinfo->data_precision != BITS_IN_JSAMPLE)
+  if (cinfo->data_precision > BITS_IN_JSAMPLE)
     ERREXIT1(cinfo, JERR_BAD_PRECISION, cinfo->data_precision);
 
   main_ptr = (my_main_ptr)

@@ -194,7 +194,7 @@ jpeg_finish_compress(j_compress_ptr cinfo)
       /* We bypass the main controller and invoke coef controller directly;
        * all work is being done from the coefficient buffer.
        */
-      if (cinfo->data_precision == 16) {
+      if (12 < cinfo->data_precision && cinfo->data_precision <= 16) {
 #ifdef C_LOSSLESS_SUPPORTED
         if (!(*cinfo->coef->compress_data_16) (cinfo, (J16SAMPIMAGE)NULL))
           ERREXIT(cinfo, JERR_CANT_SUSPEND);

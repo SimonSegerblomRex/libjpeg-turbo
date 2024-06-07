@@ -40,7 +40,7 @@ jinit_compress_master(j_compress_ptr cinfo)
 
   /* Preprocessing */
   if (!cinfo->raw_data_in) {
-    if (cinfo->data_precision == 16) {
+    if (12 < cinfo->data_precision && cinfo->data_precision <= 16) {
 #ifdef C_LOSSLESS_SUPPORTED
       j16init_color_converter(cinfo);
       j16init_downsampler(cinfo);
@@ -64,7 +64,7 @@ jinit_compress_master(j_compress_ptr cinfo)
   if (cinfo->master->lossless) {
 #ifdef C_LOSSLESS_SUPPORTED
     /* Prediction, sample differencing, and point transform */
-    if (cinfo->data_precision == 16)
+    if (12 < cinfo->data_precision && cinfo->data_precision <= 16)
       j16init_lossless_compressor(cinfo);
     else if (cinfo->data_precision == 12)
       j12init_lossless_compressor(cinfo);
@@ -78,7 +78,7 @@ jinit_compress_master(j_compress_ptr cinfo)
     }
 
     /* Need a full-image difference buffer in any multi-pass mode. */
-    if (cinfo->data_precision == 16)
+    if (12 < cinfo->data_precision && cinfo->data_precision <= 16)
       j16init_c_diff_controller(cinfo, (boolean)(cinfo->num_scans > 1 ||
                                                  cinfo->optimize_coding));
     else if (cinfo->data_precision == 12)
@@ -125,7 +125,7 @@ jinit_compress_master(j_compress_ptr cinfo)
                                                cinfo->optimize_coding));
   }
 
-  if (cinfo->data_precision == 16)
+  if (12 < cinfo->data_precision && cinfo->data_precision <= 16)
 #ifdef C_LOSSLESS_SUPPORTED
     j16init_c_main_controller(cinfo, FALSE /* never need full buffer here */);
 #else

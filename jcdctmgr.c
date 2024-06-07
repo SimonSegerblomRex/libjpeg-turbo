@@ -633,7 +633,7 @@ _jinit_forward_dct(j_compress_ptr cinfo)
   my_fdct_ptr fdct;
   int i;
 
-  if (cinfo->data_precision != BITS_IN_JSAMPLE)
+  if (cinfo->data_precision > BITS_IN_JSAMPLE)
     ERREXIT1(cinfo, JERR_BAD_PRECISION, cinfo->data_precision);
 
   fdct = (my_fdct_ptr)

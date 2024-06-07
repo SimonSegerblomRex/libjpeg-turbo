@@ -88,7 +88,7 @@ _jpeg_write_scanlines(j_compress_ptr cinfo, _JSAMPARRAY scanlines,
 #if BITS_IN_JSAMPLE != 16 || defined(C_LOSSLESS_SUPPORTED)
   JDIMENSION row_ctr, rows_left;
 
-  if (cinfo->data_precision != BITS_IN_JSAMPLE)
+  if (cinfo->data_precision > BITS_IN_JSAMPLE)
     ERREXIT1(cinfo, JERR_BAD_PRECISION, cinfo->data_precision);
 
   if (cinfo->global_state != CSTATE_SCANNING)

@@ -470,7 +470,7 @@ _jinit_downsampler(j_compress_ptr cinfo)
   jpeg_component_info *compptr;
   boolean smoothok = TRUE;
 
-  if (cinfo->data_precision != BITS_IN_JSAMPLE)
+  if (cinfo->data_precision > BITS_IN_JSAMPLE)
     ERREXIT1(cinfo, JERR_BAD_PRECISION, cinfo->data_precision);
 
   downsample = (my_downsample_ptr)

@@ -191,8 +191,7 @@ initial_setup(j_compress_ptr cinfo, boolean transcode_only)
     ERREXIT(cinfo, JERR_WIDTH_OVERFLOW);
 
 #ifdef C_LOSSLESS_SUPPORTED
-  if (cinfo->data_precision != 8 && cinfo->data_precision != 12 &&
-      cinfo->data_precision != 16)
+  if (!(2 <= cinfo->data_precision && cinfo->data_precision <= 16))
 #else
   if (cinfo->data_precision != 8 && cinfo->data_precision != 12)
 #endif

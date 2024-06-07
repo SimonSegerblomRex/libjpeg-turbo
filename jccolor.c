@@ -552,7 +552,7 @@ _jinit_color_converter(j_compress_ptr cinfo)
 {
   my_cconvert_ptr cconvert;
 
-  if (cinfo->data_precision != BITS_IN_JSAMPLE)
+  if (cinfo->data_precision > BITS_IN_JSAMPLE)
     ERREXIT1(cinfo, JERR_BAD_PRECISION, cinfo->data_precision);
 
   cconvert = (my_cconvert_ptr)
